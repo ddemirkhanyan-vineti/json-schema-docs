@@ -26,7 +26,7 @@ class JsonSchemaDocsTest < Minitest::Test
 
   def test_it_needs_one_or_the_other
     assert_raises ArgumentError do
-      JsonSchemaDocs.build(filename: 'http://graphql.org/swapi-graphql/', schema: File.join(fixtures_dir, 'schema.json'))
+      JsonSchemaDocs.build(filename: 'http://json-schema.org/schema.json', schema: File.join(fixtures_dir, 'schema.json'))
     end
 
     assert_raises ArgumentError do

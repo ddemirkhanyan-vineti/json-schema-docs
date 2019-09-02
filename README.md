@@ -47,7 +47,7 @@ If you wanted to, you could break these calls up individually. For example:
 options = {}
 options[:filename] = "#{File.dirname(__FILE__)}/../data/schema.json"
 
-options = GraphQLDocs::Configuration::GRAPHQLDOCS_DEFAULTS.merge(options)
+options = JsonSchemaDocs::Configuration::JSON_SCHEMA_DOCS.merge(options)
 
 response = File.read(options[:filename])
 

@@ -8,8 +8,7 @@
 /spec/reports/
 /tmp/
 /output/
-/test/graphql-docs/fixtures/output/
+test/json-schema-docs/fixtures/output
 /.sass-cache/
 /output/
 .byebug_history
-test/json-schema-docs/fixtures/output
