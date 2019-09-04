@@ -1,6 +1,6 @@
-#  <a class="header-link" name="resource-<%= schemata['title'] %>"><%= schemata['title'] %></a>
+# <a class="header-link" name="resource-<%= slugify.(schemata['title']) %>"><%= schemata['title'] %></a>
 
-<% (schemata['links'] || []).each do |link, datum| %>
+<% schemata['links'].each do |link, datum| %>
 
 ## <a class="header-link" name="link-<%= link['method'] %>-<%= resource %>-<%= link['href'] %>"><%= schemata['title'] %> <%= link['title'] %></a>
 

@@ -10,5 +10,5 @@
 /output/
 test/json-schema-docs/fixtures/output
 /.sass-cache/
-/output/
+output/
 .byebug_history

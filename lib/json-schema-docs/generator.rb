@@ -24,10 +24,10 @@ module JsonSchemaDocs
 
       @parsed_schema.each_pair do |resource, schemata|
         %i(endpoint object).each do |type|
-          contents = render(type, schemata)
+          contents = render(type, resource, schemata)
           write_file(type, resource, contents)
 
-          contents = render(type, schemata)
+          contents = render(type, resource, schemata)
           write_file(type, resource, contents)
         end
       end
@@ -35,10 +35,11 @@ module JsonSchemaDocs
 
     private
 
-    def render(type, schemata)
+    def render(type, resource, schemata)
       layout = instance_variable_get("@json_schema_#{type}_template")
       opts = @options.merge(helper_methods)
 
+      opts[:schemata_resource] = resource
       opts[:schemata] = schemata
       layout.result(OpenStruct.new(opts).instance_eval { binding })
     end

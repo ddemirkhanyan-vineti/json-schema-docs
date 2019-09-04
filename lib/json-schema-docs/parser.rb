@@ -44,8 +44,10 @@ module JsonSchemaDocs
             end
           end
 
+          schemata['links'] ||= []
+
           # establish full link description
-          (schemata['links'] || []).each do |link, datum|
+          schemata['links'].each do |link, datum|
             link_path = build_link_path(@schema, link)
             response_example = link['response_example']
 
