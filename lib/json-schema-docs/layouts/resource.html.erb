@@ -4,7 +4,9 @@
 <p class="stability-info">Stability: <code class="stability-type"><%= schemata['stability'] %></code></p>
 <% end %>
 
-<p class=resource-description"><%= schemata['description'] %></p>
+<p class=resource-description">
+<%= markdownify.(schemata['description']) %>
+</p>
 
 <% if schemata['property_refs'] && !schemata['property_refs'].empty? %>
 

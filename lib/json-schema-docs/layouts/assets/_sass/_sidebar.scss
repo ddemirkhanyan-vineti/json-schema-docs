@@ -11,7 +11,7 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
-  font-family: 'ProximaNova-Semibold';
+  font-family: "ProximaNova-Semibold";
   border-right: 1px solid #eee;
   font-size: 16px;
   line-height: 1.1em;
@@ -35,8 +35,8 @@
     font-weight: bold;
   }
   .categories {
-    >li {
-      >p {
+    > li {
+      > p {
         margin-top: 1.5em;
         border-top: 1px solid #eee;
         text-transform: uppercase;
@@ -48,7 +48,7 @@
     }
   }
   .sub-menu {
-    font-family: 'ProximaNova-Regular';
+    font-family: "ProximaNova-Regular";
     padding-left: 20px;
     margin: 0.6em 0;
     font-size: 14px;
@@ -69,13 +69,7 @@
       }
     }
   }
-}
-
-#sidebar-mobile {
-  display: none;
-  margin-bottom: 20px;
-  .search-box {
-    width: 200px;
-    margin-bottom: 20px;
+  ul.menu-subroot {
+    padding-left: 10px;
   }
 }

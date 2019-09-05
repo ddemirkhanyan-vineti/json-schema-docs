@@ -6,6 +6,15 @@
 .resource-attributes {
   display: table-cell;
   width: 33%;
+
+  ul.resource-attributes-list li {
+    list-style: none;
+  }
+
+  span.resource-attributes-item-type {
+    color: gray;
+    text-transform: lowercase;
+  }
 }
 
 .resource-example {

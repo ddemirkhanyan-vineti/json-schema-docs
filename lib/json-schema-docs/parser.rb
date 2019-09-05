@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'prmd'
+require 'neatjson'
 
 module JsonSchemaDocs
   class Parser
@@ -41,7 +42,7 @@ module JsonSchemaDocs
                 property_ref[:name] = key
               end
               schemata['property_refs'].push(property_ref)
-              schemata['example'] = JSON.pretty_generate(sort_keys(@schema.schemata_example(resource)), indent: "  ")
+              schemata['example'] = pretty_json(@schema.schemata_example(resource))
             end
           end
 
@@ -321,7 +322,7 @@ module JsonSchemaDocs
 
       # add data, if present
       if !data.nil? && link['method'].upcase != 'GET'
-        data = "-d '#{JSON.pretty_generate(data)}' \\"
+        data = "-d '#{pretty_json(data)}' \\"
       elsif !get_params.empty? && link['method'].upcase == 'GET'
         data = "-G #{get_params.join(" ss\\\n  -d ")} \\"
       end
@@ -351,11 +352,11 @@ module JsonSchemaDocs
         else
           if link['rel'] == 'empty'
           elsif link.has_key?('targetSchema')
-            JSON.pretty_generate(@schema.schema_example(link['targetSchema']))
+            pretty_json(@schema.schema_example(link['targetSchema']))
           elsif link['rel'] == 'instances'
-            JSON.pretty_generate([@schema.schemata_example(resource)])
+            pretty_json([@schema.schemata_example(resource)])
           else
-            JSON.pretty_generate(@schema.schemata_example(resource))
+            pretty_json(@schema.schemata_example(resource))
           end
         end
       else
@@ -363,8 +364,8 @@ module JsonSchemaDocs
       end
     end
 
-    def sort_keys(hash)
-      Hash[ hash.sort_by { |key, _| key } ]
+    def pretty_json(json)
+      JSON.neat_generate(json, wrap: true, sort: true)
     end
   end
 end

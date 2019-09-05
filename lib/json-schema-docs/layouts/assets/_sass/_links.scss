@@ -3,9 +3,28 @@
   width: 100%;
 }
 
-.link-attributes {
+.link-properties {
   display: table-cell;
   width: 33%;
+
+  ul.link-properties-list li {
+    list-style: none;
+  }
+
+  span.link-properties-item-type {
+    color: gray;
+    text-transform: lowercase;
+  }
+
+  span.link-properties-required {
+    color: orange;
+    text-transform: lowercase;
+  }
+
+  span.link-properties-optional {
+    color: gray;
+    text-transform: lowercase;
+  }
 }
 
 .link-example {

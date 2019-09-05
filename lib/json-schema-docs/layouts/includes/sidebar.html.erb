@@ -22,7 +22,7 @@
       <% if name == type %>
       <ul class="menu-subroot">
         <% schemata.(name)['links'].each do |link| %>
-          <li class="menu-subroot-item"><a href="<%= base_url %>/resources/<%= type.downcase %>/links#link-<%= link['method'] %>-<%= resource %>-<%= link['href'] %>"><%= link['title'] %></a></li>
+          <li class="menu-subroot-item"><a href="<%= base_url %>/resources/<%= type.downcase %>/links#link-<%= link['method'] %>-<%= link['title'] %>"><%= link['title'] %></a></li>
         <% end %>
       </ul>
       <% end %> <% end %>

@@ -2,9 +2,11 @@
 
 <% schemata['links'].each do |link, datum| %>
 
-<h2 class="link-name"><a name="link-<%= link['method'] %>-<%= resource %>-<%= link['href'] %>"><%= schemata['title'] %> <%= link['title'] %></a></h2>
+<h2 class="link-name"><a name="link-<%= link['method'] %>-<%= link['title'] %>"><%= link['title'] %></a></h2>
 
-<p class=link-description"><%= schemata['description'] %></p>
+<p class=link-description">
+<%= markdownify.(schemata['description']) %>
+</p>
 
 <pre>
 <%= link['method'] %> <%= link['link_path'] %>
@@ -44,7 +46,7 @@
         <span class="link-properties-item-type">
           <%= property_ref[:type] %>
         </span>
-        <span class="link-properties-required">
+        <span class="link-properties-optional">
           Optional
         </span>
       </h3>
