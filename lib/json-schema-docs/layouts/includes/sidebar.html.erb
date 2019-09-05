@@ -1,0 +1,31 @@
+<ul class="categories">
+  <li>
+    <ul class="menu-root">
+      <li>
+        <a href="<%= base_url.present? ? base_url : '/' %>">Reference</a>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="<%= base_url %>/types">Types</a></p>
+    <ul class="menu-root">
+      <% types.().each do |type| %>
+      <li>
+        <a
+          href="<%= base_url %>/resources/<%= type.downcase %>/"
+          class="sidebar-link<% if name == type %> current<% end %>"
+        >
+          <%= type %>
+        </a>
+      </li>
+      <% if name == type %>
+      <ul class="menu-subroot">
+        <% schemata.(name)['links'].each do |link| %>
+          <li class="menu-subroot-item"><a href="<%= base_url %>/resources/<%= type.downcase %>/links#link-<%= link['method'] %>-<%= resource %>-<%= link['href'] %>"><%= link['title'] %></a></li>
+        <% end %>
+      </ul>
+      <% end %> <% end %>
+    </ul>
+  </li>
+</ul>

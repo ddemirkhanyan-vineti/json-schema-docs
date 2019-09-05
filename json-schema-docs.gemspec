@@ -23,6 +23,16 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'prmd', '~> 0.13'
 
+  # rendering
+  spec.add_dependency 'commonmarker', '~> 0.16'
+  spec.add_dependency 'gemoji', '~> 3.0'
+  spec.add_dependency 'html-pipeline', '~> 2.9'
+  spec.add_dependency 'escape_utils',  '~> 1.2'
+  spec.add_dependency 'extended-markdown-filter', '~> 0.4'
+  spec.add_dependency 'page-toc-filter', '~> 0.2'
+  spec.add_dependency 'rouge', '~> 3.10'
+  spec.add_dependency 'sass', '~> 3.4'
+
   spec.add_development_dependency 'awesome_print'
   spec.add_development_dependency 'html-proofer', '~> 3.4'
   spec.add_development_dependency 'minitest', '~> 5.0'

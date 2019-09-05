@@ -1,0 +1,40 @@
+<h1 class="resource-name"><a name="resource-<%= schemata['title'].downcase %>"><%= schemata['title'] %></a></h1>
+
+<% if schemata['stability'] && !schemata['stability'].empty? %>
+<p class="stability-info">Stability: <code class="stability-type"><%= schemata['stability'] %></code></p>
+<% end %>
+
+<p class=resource-description"><%= schemata['description'] %></p>
+
+<% if schemata['property_refs'] && !schemata['property_refs'].empty? %>
+
+<div class="resource-copy-wrapper">
+  <div class="resource-attributes">
+    <h2 class="resource-attributes-title">Attributes</h2>
+    <ul class="resource-attributes-list">
+    <%- schemata['property_refs'].each do |property_ref| -%>
+    <li class="resource-attributes-item">
+      <h3 class="resource-attributes-item-label">
+        <span class="resource-attributes-item-name">
+          <%= property_ref[:name] %>
+        </span>
+        <span class="resource-attributes-item-type">
+          <%= property_ref[:type] %>
+        </span>
+      </h3>
+      <div class="resource-attributes-item-description-and-children">
+        <p class="resource-attributes-item-description">
+          <span><%= markdownify.(property_ref[:description]) %></span>
+        </p>
+      </div>
+    </li>
+    <%- end -%>
+    </ul>
+  </div>
+
+  <div class="resource-example">
+  <%= include.('resource_example.html.erb', example: schemata['example']) %>
+  </div>
+</div>
+
+<% end %>

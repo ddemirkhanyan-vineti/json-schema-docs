@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'commonmarker'
+
 module JsonSchemaDocs
   module Helpers
     SLUGIFY_PRETTY_REGEXP = Regexp.new("[^[:alnum:]._~!$&'()+,;=@]+").freeze
@@ -14,8 +16,22 @@ module JsonSchemaDocs
 
     def include(filename, opts = {})
       template = fetch_include(filename)
-      opts = @options.merge(opts)
+      opts = { base_url: @options[:base_url] }.merge(opts)
       template.result(OpenStruct.new(opts.merge(helper_methods)).instance_eval { binding })
+    end
+
+    def markdownify(string)
+      return '' if string.nil?
+      type = @options[:pipeline_config][:context][:unsafe] ? :UNSAFE : :DEFAULT
+      ::CommonMarker.render_html(string, type).strip
+    end
+
+    def types
+      @parsed_schema.keys
+    end
+
+    def schemata(name)
+      @parsed_schema[name]
     end
 
     private

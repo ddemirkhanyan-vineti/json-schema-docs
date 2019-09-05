@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'json-schema-docs/helpers'
+require 'json-schema-docs/renderer'
 require 'json-schema-docs/configuration'
 require 'json-schema-docs/generator'
 require 'json-schema-docs/parser'

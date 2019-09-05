@@ -41,6 +41,7 @@ module JsonSchemaDocs
                 property_ref[:name] = key
               end
               schemata['property_refs'].push(property_ref)
+              schemata['example'] = JSON.pretty_generate(sort_keys(@schema.schemata_example(resource)), indent: "  ")
             end
           end
 
@@ -68,8 +69,8 @@ module JsonSchemaDocs
             end
 
             link['link_path'] = link_path
-            link['required_properties'] = link_schema_required_properties
-            link['optional_properties'] = link_schema_optional_properties
+            link['required_properties'] = link_schema_required_properties || []
+            link['optional_properties'] = link_schema_optional_properties || []
             link['example'] = generate_example(link, link_path)
             link['response'] = {
               header: generate_response_header(response_example, link),
@@ -360,6 +361,10 @@ module JsonSchemaDocs
       else
         nil
       end
+    end
+
+    def sort_keys(hash)
+      Hash[ hash.sort_by { |key, _| key } ]
     end
   end
 end

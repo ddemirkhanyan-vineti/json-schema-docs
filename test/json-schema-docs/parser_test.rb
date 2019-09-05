@@ -3,7 +3,7 @@ require 'test_helper'
 
 class ParserTest < Minitest::Test
   def setup
-    @schema = File.read(File.join(fixtures_dir, 'schema.json'))
+    @schema = File.read(File.join(fixtures_dir, 'simple.json'))
   end
 
   def test_it_parses_string

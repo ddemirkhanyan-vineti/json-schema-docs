@@ -33,14 +33,7 @@ task sample: [:generate_sample] do
 
   puts 'Navigate to http://localhost:3000 to see the sample docs'
 
-  mime_types = WEBrick::HTTPUtils::DefaultMimeTypes
-  mime_types.store 'md', 'text/plain'
-
-  options = {
-    Port: 3000,
-    MimeTypes: mime_types
-  }
-  server = WEBrick::HTTPServer.new options
+  server = WEBrick::HTTPServer.new Port: 3000
   server.mount '/', WEBrick::HTTPServlet::FileHandler, 'output'
   trap('INT') { server.stop }
   server.start

@@ -1,6 +1,6 @@
-## Curl Example
+<h2>>Curl Example</h2>
 
-```bash
+<pre lang="bash">
 $ curl -n <%= example[:request] -%><%- unless example[:http_headers].empty? %> \<%- end -%>
 <%- if !example[:data].nil? %>
   <%= example[:data] -%>
@@ -8,4 +8,4 @@ $ curl -n <%= example[:request] -%><%- unless example[:http_headers].empty? %> \
 <%- example[:http_headers].each do |key, value| %>
   -H "<%= key %>: <%= value %>"<%- if key != example[:http_headers].keys.last %> \<%- end -%>
 <%- end %>
-```
+<pre>

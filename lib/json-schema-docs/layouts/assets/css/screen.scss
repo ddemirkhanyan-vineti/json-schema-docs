@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+@import "../_sass/_normalize.scss";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  font-weight: 400;
+  color: #444;
+}
+
+#wrap {
+  padding-top: 100px;
+  padding-left: 300px;
+  height: 100%;
+}
+#header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  font-family: "ProximaNova-Semibold";
+}
+
+@import "../_sass/_header";
+@import "../_sass/_sidebar";
+@import "../_sass/_content";
+@import "../_sass/_resource";
+@import "../_sass/_links";
