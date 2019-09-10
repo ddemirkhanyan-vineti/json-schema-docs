@@ -92,7 +92,8 @@ module JsonSchemaDocs
       meta = { type: type, title: name, name: name }
       if has_yaml?(contents)
         # Split data
-        meta, contents = split_into_metadata_and_contents(contents)
+        frontmatter, contents = split_into_metadata_and_contents(contents)
+        meta = frontmatter.merge(meta)
       end
 
       if trim
