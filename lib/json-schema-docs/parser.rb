@@ -339,6 +339,8 @@ module JsonSchemaDocs
         '201 Created'
       when 'empty'
         '202 Accepted'
+      when 'no_content'
+        '204 No Content'
       else
         '200 OK'
       end
