@@ -89,7 +89,7 @@ module JsonSchemaDocs
 
       FileUtils.mkdir_p(path)
 
-      meta = { title: name, name: name }
+      meta = { type: type, title: name, name: name }
       if has_yaml?(contents)
         # Split data
         meta, contents = split_into_metadata_and_contents(contents)
@@ -102,6 +102,7 @@ module JsonSchemaDocs
       end
 
       filename = File.join(path, 'index.html')
+      meta[:filename] = filename
       output = @renderer.render(contents, meta: meta)
       File.write(filename, output) unless output.nil?
     end

@@ -10,7 +10,7 @@ class RendererTest < Minitest::Test
   end
 
   def test_that_rendering_works
-    contents = @renderer.render("R2D2", meta: { name: "R2D2" })
+    contents = @renderer.render('R2D2', meta: { name: 'R2D2' })
 
     assert_match %r{<title>R2D2</title>}, contents
   end
