@@ -45,7 +45,8 @@
           "href": "/posts/{(%23%2Fdefinitions%2Fpost%2Fdefinitions%2Fidentity)}",
           "method": "DELETE",
           "rel": "destroy",
-          "title": "Delete"
+          "title": "Delete",
+          "code": 204
         },
         {
           "description": "Info for existing post.",

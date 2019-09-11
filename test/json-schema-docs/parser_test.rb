@@ -30,5 +30,6 @@ class ParserTest < Minitest::Test
     assert_equal ['post', 'user'], results.keys
     assert_equal 5, results['post']['links'].length
     assert_equal 'POST', results['post']['links'].first['method']
+    assert_equal 204, results['post']['links'][1]['code']
   end
 end
