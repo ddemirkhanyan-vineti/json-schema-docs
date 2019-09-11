@@ -48,7 +48,7 @@ module JsonSchemaDocs
           opts[:schemata] = schemata
 
           contents = layout.result(OpenStruct.new(opts).instance_eval { binding })
-          write_file(type, resource, contents)
+          write_file(type, resource, schemata['title'], contents)
         end
       end
 
@@ -56,7 +56,7 @@ module JsonSchemaDocs
         landing_page = instance_variable_get("@json_schema_#{name}_landing_page")
 
         unless landing_page.nil?
-          write_file(:landing_page, name.to_s, landing_page, trim: false)
+          write_file(:landing_page, name.to_s, nil, landing_page, trim: false)
         end
       end
 
@@ -73,7 +73,7 @@ module JsonSchemaDocs
 
     private
 
-    def write_file(type, name, contents, trim: true)
+    def write_file(type, name, title, contents, trim: true)
       if type == :landing_page
         if name == 'index'
           path = @options[:output_dir]
@@ -89,7 +89,7 @@ module JsonSchemaDocs
 
       FileUtils.mkdir_p(path)
 
-      meta = { type: type, title: name, name: name }
+      meta = { type: type, title: title, name: name }
       if has_yaml?(contents)
         # Split data
         frontmatter, contents = split_into_metadata_and_contents(contents)
