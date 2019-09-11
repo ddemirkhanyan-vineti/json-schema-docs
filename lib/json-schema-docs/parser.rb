@@ -334,12 +334,18 @@ module JsonSchemaDocs
       return response_example['head'] if response_example
 
       header = 'HTTP/1.1'
-      code = case link['rel']
-      when 'create'
+      code = case true
+      when link['code'] == 200
+        '200 OK'
+      when link['code'] == 201
         '201 Created'
-      when 'empty'
+      when link['code'] == 202
         '202 Accepted'
-      when 'no_content'
+      when link['code'] == 204
+        '204 No Content'
+      when link['rel'] == 'create'
+        '201 Created'
+      when link['rel'] == 'destroy'
         '204 No Content'
       else
         '200 OK'
