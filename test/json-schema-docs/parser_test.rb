@@ -55,4 +55,35 @@ class ParserTest < Minitest::Test
     assert_match /204 No Content/, link_with_code_204["response"][:header]
     assert_match /202 Accepted/, link_with_response_head["response"][:header]
   end
+
+  def test_it_generates_response_example
+    data = Prmd::MultiLoader::Json.load_data(@schema)
+
+    schema = Prmd::Schema.new(data)
+
+    assert schema.class, Prmd::Schema
+
+    parser = JsonSchemaDocs::Parser.new(schema, JsonSchemaDocs::Configuration::JSON_SCHEMA_DOCS_DEFAULTS)
+    results = parser.parse
+
+    link_with_given_example_body = results['post']['links'][4]
+    actual = JSON.parse(link_with_given_example_body["response"][:example])
+    assert_kind_of Hash, actual
+    assert_equal "msg", actual.keys.first
+
+    link_with_target_schema = results['post']['links'][2]
+    actual = JSON.parse(link_with_target_schema["response"][:example])
+    assert_kind_of Hash, actual
+    assert_equal %w(created_at id updated_at), actual.keys
+
+    link_with_rel_instances = results['post']['links'][3]
+    actual = JSON.parse(link_with_rel_instances["response"][:example])
+    assert_kind_of Array, actual
+    item = actual.first
+    assert_kind_of Hash, item
+    assert_equal %w(created_at id updated_at), item.keys
+
+    link_with_code_204   = results['post']['links'][1]
+    assert_nil link_with_code_204["response"][:example]
+  end
 end

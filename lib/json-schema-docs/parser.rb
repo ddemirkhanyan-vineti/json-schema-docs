@@ -354,21 +354,16 @@ module JsonSchemaDocs
     end
 
     def generate_response_example(response_example, link, resource)
-      if response_example || link['rel'] != 'empty'
-        if response_example
-          response_example['body']
-        else
-          if link['rel'] == 'empty'
-          elsif link.has_key?('targetSchema')
-            pretty_json(@schema.schema_example(link['targetSchema']))
-          elsif link['rel'] == 'instances'
-            pretty_json([@schema.schemata_example(resource)])
-          else
-            pretty_json(@schema.schemata_example(resource))
-          end
-        end
-      else
+      return response_example['body'] if response_example && response_example['body']
+
+      if link.has_key?('targetSchema')
+        pretty_json(@schema.schema_example(link['targetSchema']))
+      elsif link['rel'] == 'instances'
+        pretty_json([@schema.schemata_example(resource)])
+      elsif link['code'] == 204
         nil
+      else
+        pretty_json(@schema.schemata_example(resource))
       end
     end
 
