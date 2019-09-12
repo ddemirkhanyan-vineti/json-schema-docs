@@ -331,15 +331,21 @@ module JsonSchemaDocs
     end
 
     def generate_response_header(response_example, link)
-      return response_example['head'] if response_example
+      return response_example['head'] if response_example && response_example['head']
 
       header = 'HTTP/1.1'
-      code = case link['rel']
-      when 'create'
+      code = case true
+      when link['code'] == 200
+        '200 OK'
+      when link['code'] == 201
         '201 Created'
-      when 'empty'
+      when link['code'] == 202
         '202 Accepted'
-      when 'no_content'
+      when link['code'] == 204
+        '204 No Content'
+      when link['rel'] == 'create'
+        '201 Created'
+      when link['rel'] == 'destroy'
         '204 No Content'
       else
         '200 OK'
@@ -348,21 +354,16 @@ module JsonSchemaDocs
     end
 
     def generate_response_example(response_example, link, resource)
-      if response_example || link['rel'] != 'empty'
-        if response_example
-          response_example['body']
-        else
-          if link['rel'] == 'empty'
-          elsif link.has_key?('targetSchema')
-            pretty_json(@schema.schema_example(link['targetSchema']))
-          elsif link['rel'] == 'instances'
-            pretty_json([@schema.schemata_example(resource)])
-          else
-            pretty_json(@schema.schemata_example(resource))
-          end
-        end
-      else
+      return response_example['body'] if response_example && response_example['body']
+
+      if link.has_key?('targetSchema')
+        pretty_json(@schema.schema_example(link['targetSchema']))
+      elsif link['rel'] == 'instances'
+        pretty_json([@schema.schemata_example(resource)])
+      elsif link['code'] == 204
         nil
+      else
+        pretty_json(@schema.schemata_example(resource))
       end
     end
 

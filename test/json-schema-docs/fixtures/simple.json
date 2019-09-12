@@ -45,14 +45,18 @@
           "href": "/posts/{(%23%2Fdefinitions%2Fpost%2Fdefinitions%2Fidentity)}",
           "method": "DELETE",
           "rel": "destroy",
-          "title": "Delete"
+          "title": "Delete",
+          "code": 204
         },
         {
           "description": "Info for existing post.",
           "href": "/posts/{(%23%2Fdefinitions%2Fpost%2Fdefinitions%2Fidentity)}",
           "method": "GET",
           "rel": "self",
-          "title": "Info"
+          "title": "Info",
+          "targetSchema": {
+    				"$ref": "#/definitions/post"
+    			}
         },
         {
           "description": "List existing posts.",
@@ -69,6 +73,9 @@
           "schema": {
             "properties": {},
             "type": ["object"]
+          },
+          "response_example": {
+            "body": "{ \"msg\": \"test message\" }"
           },
           "title": "Update"
         }
@@ -123,7 +130,10 @@
             "properties": {},
             "type": ["object"]
           },
-          "title": "Create"
+          "title": "Create",
+          "response_example": {
+            "head": "202 Accepted"
+          }
         },
         {
           "description": "Delete an existing user.",
