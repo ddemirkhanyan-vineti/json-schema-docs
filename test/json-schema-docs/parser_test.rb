@@ -47,10 +47,12 @@ class ParserTest < Minitest::Test
     link_with_rel_self   = results['post']['links'][2]
     link_with_rel_update = results['post']['links'][4]
     link_with_code_204   = results['post']['links'][1]
+    link_with_response_head = results['user']['links'][0]
 
     assert_match /201 Created/, link_with_rel_create["response"][:header]
     assert_match /200 OK/, link_with_rel_self["response"][:header]
     assert_match /200 OK/, link_with_rel_update["response"][:header]
     assert_match /204 No Content/, link_with_code_204["response"][:header]
+    assert_match /202 Accepted/, link_with_response_head["response"][:header]
   end
 end

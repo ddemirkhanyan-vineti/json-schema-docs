@@ -331,7 +331,7 @@ module JsonSchemaDocs
     end
 
     def generate_response_header(response_example, link)
-      return response_example['head'] if response_example
+      return response_example['head'] if response_example && response_example['head']
 
       header = 'HTTP/1.1'
       code = case true
