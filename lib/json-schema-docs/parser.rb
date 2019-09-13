@@ -368,7 +368,7 @@ module JsonSchemaDocs
     end
 
     def pretty_json(json)
-      JSON.neat_generate(json, wrap: true, sort: true)
+      JSON.neat_generate(json, after_colon_1: 1, after_colon_n: 1, wrap: true, sort: true)
     end
   end
 end

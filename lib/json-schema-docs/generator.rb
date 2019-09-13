@@ -96,12 +96,6 @@ module JsonSchemaDocs
         meta = frontmatter.merge(meta)
       end
 
-      if trim
-        # normalize spacing so that CommonMarker doesn't treat it as `pre`
-        contents = contents.gsub(/^\s+$/, '')
-        contents = contents.gsub(/^\s{4}/m, '  ')
-      end
-
       filename = File.join(path, 'index.html')
       meta[:filename] = filename
       output = @renderer.render(contents, meta: meta)
